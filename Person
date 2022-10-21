@@ -1,0 +1,37 @@
+using System;
+using System.Data;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
+
+class Person
+{
+    private string name; //приватне поле : name
+    private int birthYear; // приватне поле :birthYear 
+    private DateTime date = DateTime.Today; // тип ДатаТайм
+
+    public string Name
+    {
+        get { return name; }
+    } 
+    //властивість для доступу до поле Ім'я
+
+    public int BirthYear
+    {
+        get { return birthYear; }
+    } 
+    //властивість для доступа до поле ДатаНародження
+
+    public Person() : this("Iryna", 2003)
+    {
+    }
+    //конструктор за замовчуванням 
+
+    public Person(string name, int birthYear)
+    {
+        this.name = name;
+        this.birthYear = birthYear;
+    } 
+    //конструктор за двома параметрами
+
+
+}
