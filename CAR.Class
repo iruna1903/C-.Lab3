@@ -15,6 +15,28 @@ namespace Lab3_CSharps
 
             Console.WriteLine("Натисніть на будь-яку кнопку для того щоб побачити дані про Person");
             Console.ReadKey();
+
+            Car car1 = new Car("Reno", "Sceniz3", "White", 6500);
+            Car car2 = new Car("Voltswagen", "PassatB6", "Black", 7250 );
+            Car car3 = new Car("Toyota", "Rav4", "Blue", 15938);
+
+            car1.Print();
+            car1.ChangePrice(10);
+            car1.Print();
+
+            car2.Print();
+            car2.ChangePrice(10);
+            car2.Print();
+
+            car3.Print();
+            car3.ChangePrice(10);
+            car3.Print();
+
+            Console.WriteLine(car1 == car2);
+            Console.WriteLine(car2 == car3);
+
+            Console.WriteLine("Натисність на будь-яку кнопку для того щоб закрити консоль");
+            Console.ReadKey();
         }
 
         class Car
@@ -70,6 +92,23 @@ namespace Lab3_CSharps
             {
                 price += price * x / 100;
             }
+
+            public static bool operator ==(Car car1, Car car2)
+            {
+                return (car1.name == car2.name) && (car1.price == car2.price);
+            }
+            public static bool operator !=(Car car1, Car car2)
+            {
+                return (car1.name != car2.name) && (car1.price != car2.price);
+            }
+            //Перевірити чи збігається марка та ціна вказаних автомобілів
+
+            public override string ToString()
+            {
+                return $"Company name: {Car.CompanyName} Name: {this.name}" +
+                    $"Model: {this.model} Color: {this.Color} Price: {this.price}";
+            }
+            // метод ToString, який повертає рядок з даними про авто
         }
     }
 }
