@@ -32,6 +32,58 @@ class Person
         this.birthYear = birthYear;
     } 
     //конструктор за двома параметрами
+    
+    public void Age()
+    {
+        birthYear = date.Year - birthYear;
+        Console.WriteLine(birthYear);
+    }
+    //метод Age - для обчислення віку особи
 
+    public void Input()
+    {
+        Console.OutputEncoding = System.Text.Encoding.Unicode;
+        Console.InputEncoding = System.Text.Encoding.Unicode;
+
+        Console.WriteLine("Введіть ім'я:");
+        this.name = Console.ReadLine();
+        Console.WriteLine("Рік народження:");
+        this.birthYear = Convert.ToInt32(Console.ReadLine());
+    }
+    // метод Input - виведення даних про особу з консолі
+
+    public void ChangeName(string newName)
+    {
+        Console.OutputEncoding = System.Text.Encoding.Unicode;
+        Console.InputEncoding = System.Text.Encoding.Unicode;
+
+        this.name = newName;
+        Console.WriteLine($"Ім'я було змінено на:{newName}");
+    }
+    // метод ChangeName - щоб змінити ім'я
+
+    public override string ToString()
+    {
+        return $"Ім'я: {this.name}, Вік: {this.birthYear}";
+    }
+    // метод ToString
+
+    public void Output()
+    {
+        Console.OutputEncoding = System.Text.Encoding.Unicode;
+        Console.InputEncoding = System.Text.Encoding.Unicode;
+
+        Console.WriteLine($"Ім'я: {this.name}, Вік: {this.birthYear}");
+    }
+    // метод Output - щоб вивести інформацію про особу (з викликом ToString )
+
+    public static bool operator == (Person p1, Person p2)
+    {
+        return (p1.name == p2.name);
+    }
+    public static bool operator != (Person p1, Person p2)
+    {
+        return (p1.name != p2.name);
+    }
 
 }
