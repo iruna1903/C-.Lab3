@@ -3,87 +3,131 @@ using System.Data;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 
-class Person
+namespace Lab3_CSharps
 {
-    private string name; //приватне поле : name
-    private int birthYear; // приватне поле :birthYear 
-    private DateTime date = DateTime.Today; // тип ДатаТайм
-
-    public string Name
+    internal class Program
     {
-        get { return name; }
-    } 
-    //властивість для доступу до поле Ім'я
+        static void Main(string[] args)
+        {
+            Console.OutputEncoding = System.Text.Encoding.Unicode;
+            Console.InputEncoding = System.Text.Encoding.Unicode;
 
-    public int BirthYear
-    {
-        get { return birthYear; }
-    } 
-    //властивість для доступа до поле ДатаНародження
+            Console.WriteLine("Натисніть на будь-яку кнопку для того щоб побачити дані про Person");
+            Console.ReadKey();
 
-    public Person() : this("Iryna", 2003)
-    {
+            Person p1 = new Person("Iryna", 2003);
+            Person p2 = new Person("Sasha", 2003);
+            Person p3 = new Person("Sasha", 2013);
+            Person p4 = new Person("Sofia", 2004);
+            Person p5 = new Person("Lera", 2007);
+            Person p6 = new Person("Liza", 2004);
+
+            p1.Age();
+            p2.Age();
+            p3.Age();
+            p4.Age();
+            p5.Age();
+            p6.Age();
+
+            p1.Output();
+            p2.Output();
+            p3.Output();
+            p4.Output();
+            p5.Output();
+            p6.Output();
+
+            Console.WriteLine(p1 == p6);
+            Console.WriteLine(p4 == p6);
+
+            p2.ChangeName("Maya");
+            p2.Output();
+
+            Console.WriteLine("Натисність на будь-яку кнопку для того щоб закрити консоль");
+            Console.ReadKey();
+
+        }
+        class Person
+        {
+            private string name; //приватне поле : name
+            private int birthYear; // приватне поле :birthYear 
+            private DateTime date = DateTime.Today; // тип ДатаТайм
+
+            public string Name
+            {
+                get { return name; }
+            }
+            //властивість для доступу до поле Ім'я
+
+            public int BirthYear
+            {
+                get { return birthYear; }
+            }
+            //властивість для доступа до поле ДатаНародження
+
+            public Person() : this("Iryna", 2003)
+            {
+            }
+            //конструктор за замовчуванням 
+
+            public Person(string name, int birthYear)
+            {
+                this.name = name;
+                this.birthYear = birthYear;
+            }
+            //конструктор за двома параметрами
+
+            public void Age()
+            {
+                birthYear = date.Year - birthYear;
+                Console.WriteLine(birthYear);
+            }
+            //метод Age - для обчислення віку особи
+
+            public void Input()
+            {
+                Console.OutputEncoding = System.Text.Encoding.Unicode;
+                Console.InputEncoding = System.Text.Encoding.Unicode;
+
+                Console.WriteLine("Введіть ім'я:");
+                this.name = Console.ReadLine();
+                Console.WriteLine("Рік народження:");
+                this.birthYear = Convert.ToInt32(Console.ReadLine());
+            }
+            // метод Input - виведення даних про особу з консолі
+
+            public void ChangeName(string newName)
+            {
+                Console.OutputEncoding = System.Text.Encoding.Unicode;
+                Console.InputEncoding = System.Text.Encoding.Unicode;
+
+                this.name = newName;
+                Console.WriteLine($"Ім'я було змінено на:{newName}");
+            }
+            // метод ChangeName - щоб змінити ім'я
+
+            public override string ToString()
+            {
+                return $"Ім'я: {this.name}, Вік: {this.birthYear}";
+            }
+            // метод ToString
+
+            public void Output()
+            {
+                Console.OutputEncoding = System.Text.Encoding.Unicode;
+                Console.InputEncoding = System.Text.Encoding.Unicode;
+
+                Console.WriteLine($"Ім'я: {this.name}, Вік: {this.birthYear}");
+            }
+            // метод Output - щоб вивести інформацію про особу (з викликом ToString )
+
+            public static bool operator ==(Person p1, Person p2)
+            {
+                return (p1.name == p2.name);
+            }
+            public static bool operator !=(Person p1, Person p2)
+            {
+                return (p1.name != p2.name);
+            }
+        }
     }
-    //конструктор за замовчуванням 
-
-    public Person(string name, int birthYear)
-    {
-        this.name = name;
-        this.birthYear = birthYear;
-    } 
-    //конструктор за двома параметрами
-    
-    public void Age()
-    {
-        birthYear = date.Year - birthYear;
-        Console.WriteLine(birthYear);
-    }
-    //метод Age - для обчислення віку особи
-
-    public void Input()
-    {
-        Console.OutputEncoding = System.Text.Encoding.Unicode;
-        Console.InputEncoding = System.Text.Encoding.Unicode;
-
-        Console.WriteLine("Введіть ім'я:");
-        this.name = Console.ReadLine();
-        Console.WriteLine("Рік народження:");
-        this.birthYear = Convert.ToInt32(Console.ReadLine());
-    }
-    // метод Input - виведення даних про особу з консолі
-
-    public void ChangeName(string newName)
-    {
-        Console.OutputEncoding = System.Text.Encoding.Unicode;
-        Console.InputEncoding = System.Text.Encoding.Unicode;
-
-        this.name = newName;
-        Console.WriteLine($"Ім'я було змінено на:{newName}");
-    }
-    // метод ChangeName - щоб змінити ім'я
-
-    public override string ToString()
-    {
-        return $"Ім'я: {this.name}, Вік: {this.birthYear}";
-    }
-    // метод ToString
-
-    public void Output()
-    {
-        Console.OutputEncoding = System.Text.Encoding.Unicode;
-        Console.InputEncoding = System.Text.Encoding.Unicode;
-
-        Console.WriteLine($"Ім'я: {this.name}, Вік: {this.birthYear}");
-    }
-    // метод Output - щоб вивести інформацію про особу (з викликом ToString )
-
-    public static bool operator == (Person p1, Person p2)
-    {
-        return (p1.name == p2.name);
-    }
-    public static bool operator != (Person p1, Person p2)
-    {
-        return (p1.name != p2.name);
-    }
-
 }
